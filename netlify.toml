@@ -1,5 +1,7 @@
 [build]
   functions = "netlify/functions"
+  node_version = "14"
+
 
 [dev]
     targetPort = 8888
