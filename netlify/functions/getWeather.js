@@ -1,27 +1,30 @@
-// seatgeekFunction.js
+// getWeather.js
 import fetch from 'node-fetch'
 exports.handler = async (event, context) => {
 
-    const eventLocation = event.queryStringParameters['venue.city'];
-    const daysFromNow = event.queryStringParameters['datetime_local.lte'];
-    const client_id = event.queryStringParameters.client_id;
+    const lat = event.queryStringParameters.lat;
+    const lon = event.queryStringParameters.lon;
+    const appid = event.queryStringParameters.appid;
+    const exclude = event.queryStringParameters.exclude;
+    const units = event.queryStringParameters.units;
 
 
-    if (!eventLocation || !daysFromNow || !client_id) {
+    if (!lat || !lon || !exclude || !units || !appid) {
 
         throw new Error('Missing required parameters.'
             //show missig parameters in error message
-            + ' eventLocation: ' + eventLocation
-            + ' daysFromNow: ' + daysFromNow
-            + ' client_id: ' + client_id
+            + ' lat: ' + lat
+            + ' lon: ' + lon
+            + ' exclude: ' + exclude
+            + ' units: ' + units
+            + ' appid: ' + appid
         );
 
     }
 
     try {
-
         const response = await fetch(
-            `https://api.seatgeek.com/2/events?client_id=${client_id}&venue.city=${eventLocation}&datetime_local.lte=${daysFromNow}&per_page=1000`
+            `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${appid}`
         );
 
         return {
