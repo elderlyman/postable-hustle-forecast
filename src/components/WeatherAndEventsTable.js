@@ -239,10 +239,10 @@ const WeatherEventsTable = () => {
                                     <TableCell>Venue</TableCell>
                                     {eventsWithWeather[0]?.timeMatchWeatherForecast ? (
                                         <>
-                                            <TableCell>Temp</TableCell>
-                                            <TableCell>Feels Like</TableCell>
-                                            <TableCell>Wind</TableCell>
-                                            <TableCell>Conditions</TableCell>
+                                            <TableCell>Temp at start </TableCell>
+                                            <TableCell>Will feel Like</TableCell>
+                                            <TableCell>Wind at start</TableCell>
+                                            <TableCell>Conditions at start</TableCell>
                                         </>
                                     ) : null}
                                 </TableRow>
