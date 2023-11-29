@@ -57,7 +57,7 @@ const WeatherEventsTable = () => {
 
     const [bestVenues, setBestVenues] = useState(bestBostonVenues);
 
-    console.log("eventLocation: " + eventLocation);
+    // console.log("eventLocation: " + eventLocation);
 
     const handleLocationChange = (newLocation) => {
         if (newLocation === 'boston') {
