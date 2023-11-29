@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <WeatherEventsTable
-          style={{ display: "flex" }}
+          style={{ display: "block" }}
         />
         <a
           className="App-link"
