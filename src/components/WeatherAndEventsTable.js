@@ -92,7 +92,6 @@ const WeatherEventsTable = () => {
             return `${yyyy}-${mm}-${dd}T${hh}:${minutes}:${ss}`;
         };
 
-        //fix this.  it's not getting set properly.
 
         let daysFromNow = formatDateRange(2);
 
@@ -105,7 +104,7 @@ const WeatherEventsTable = () => {
         const fetchData = async () => {
             const siteName = 'marvelous-kitten-0550d0';
             const helloFunctionUrl = `https://${siteName}.netlify.app/.netlify/functions/hello`;
-            const getWeatherFunctionUrl = `https://${siteName}.netlify.app/.netlify/functions/getWeather?lat=${lat}&lon=${lon}&exclude=minutely,daily&units=imperial&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`;
+            const getWeatherFunctionUrl = `https://${siteName}.netlify.app/.netlify/functions/getWeather?lat=${lat}&lon=${lon}&exclude=minutely,daily&units=imperial`;
             const getSeatGeekEventsFunctionUrl = `https://${siteName}.netlify.app/.netlify/functions/getSeatGeekEvents?client_id=${process.env.REACT_APP_SEATGEEK_CLIENT_ID}&venue.city=${eventLocation}&datetime_local.lte=${daysFromNow}&per_page=1000`;
 
             // Making an HTTP GET request to the Netlify function endpoint
@@ -115,7 +114,6 @@ const WeatherEventsTable = () => {
                 .catch(error => console.error('Error:', error));
 
 
-            // TODO = understand why these are both breaking uniformly now.header error ? but maybe node error
             try {
                 const response = await Promise.all([
                     fetch(getWeatherFunctionUrl
@@ -123,20 +121,6 @@ const WeatherEventsTable = () => {
                     fetch(
                         getSeatGeekEventsFunctionUrl),
                 ]);
-
-
-                //old
-
-                // try {
-                //     const response = await Promise.all([
-                //         fetch(
-                //             `https://api.openweathermap.org/data/2.5/onecall?${weatherLocation}&exclude=minutely,daily&units=imperial&appid=${process.env.REACT_APP_OPENWEATHERMAP_APP_ID}`
-                //         ),
-                //         fetch(
-                //             `https://api.seatgeek.com/2/events?client_id=${process.env.REACT_APP_SEATGEEK_CLIENT_ID}&venue.city=${eventLocation}&datetime_local.lte=${daysFromNow}&per_page=1000`
-                //         )
-                //     ]);
-
 
                 const data = await Promise.all(response.map((res) => res.json()));
 
