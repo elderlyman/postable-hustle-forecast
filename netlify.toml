@@ -1,8 +1,3 @@
 [functions]
   node_bundler = "esbuild"
 
-[dev]
-command = "npm run dev"
-  targetPort = 9000
-  port = 8888
-  publish = "dist"
