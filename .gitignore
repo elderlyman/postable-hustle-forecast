@@ -28,3 +28,6 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# Ignore NVM configuration
+.nvmrc
