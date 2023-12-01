@@ -2,6 +2,5 @@
   node_bundler = "esbuild"
 
 [dev]
-framework = “next”
-command = “npm run dev”
-
+  command = "npm run start"
+  port = 8888
