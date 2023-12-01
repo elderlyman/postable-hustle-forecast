@@ -105,7 +105,7 @@ const WeatherEventsTable = () => {
             const siteName = 'marvelous-kitten-0550d0';
             const helloFunctionUrl = `https://${siteName}.netlify.app/.netlify/functions/hello`;
             const getWeatherFunctionUrl = `https://${siteName}.netlify.app/.netlify/functions/getWeather?lat=${lat}&lon=${lon}&exclude=minutely,daily&units=imperial`;
-            const getSeatGeekEventsFunctionUrl = `https://${siteName}.netlify.app/.netlify/functions/getSeatGeekEvents?client_id=${process.env.REACT_APP_SEATGEEK_CLIENT_ID}&venue.city=${eventLocation}&datetime_local.lte=${daysFromNow}&per_page=1000`;
+            const getSeatGeekEventsFunctionUrl = `https://${siteName}.netlify.app/.netlify/functions/getSeatGeekEvents?venue.city=${eventLocation}&datetime_local.lte=${daysFromNow}&per_page=1000`;
 
             // Making an HTTP GET request to the Netlify function endpoint
             fetch(helloFunctionUrl)

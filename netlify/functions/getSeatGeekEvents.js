@@ -1,18 +1,19 @@
 // seatgeekFunction.js
 import axios from 'axios';
 
+//get client id from .env
+const client_id = process.env.SEATGEEK_CLIENT_ID || 'default_seatgeek_client_id';
+
 exports.handler = async (event, context) => {
     const eventLocation = event.queryStringParameters['venue.city'];
     const daysFromNow = event.queryStringParameters['datetime_local.lte'];
-    const client_id = event.queryStringParameters.client_id;
 
-    if (!eventLocation || !daysFromNow || !client_id) {
+    if (!eventLocation || !daysFromNow) {
         throw new Error(
             'Missing required parameters.'
             // Show missing parameters in the error message
             + ' eventLocation: ' + eventLocation
             + ' daysFromNow: ' + daysFromNow
-            + ' client_id: ' + client_id
         );
     }
 
@@ -21,9 +22,9 @@ exports.handler = async (event, context) => {
             `https://api.seatgeek.com/2/events`,
             {
                 params: {
-                    client_id: client_id,
                     'venue.city': eventLocation,
                     'datetime_local.lte': daysFromNow,
+                    client_id: client_id,
                     per_page: 1000,
                 },
             }
