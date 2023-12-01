@@ -4,3 +4,7 @@
 [dev]
   command = "npm run start"
   port = 8888
+
+[build]
+command = "npm run build"
+publish = "build"
