@@ -2,7 +2,10 @@
 import axios from 'axios';
 
 //get client id from .env
-const client_id = process.env.SEATGEEK_CLIENT_ID || 'default_seatgeek_client_id';
+const client_id = process.env.REACT_APP_SEATGEEK_CLIENT_ID || 'default_seatgeek_client_id';
+
+//log client id anywhere
+console.log('client_id: ', client_id);
 
 exports.handler = async (event, context) => {
     const eventLocation = event.queryStringParameters['venue.city'];
