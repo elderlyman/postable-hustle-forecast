@@ -4,12 +4,10 @@ import axios from 'axios';
 //get client id from .env
 const client_id = process.env.REACT_APP_SEATGEEK_CLIENT_ID || 'default_seatgeek_client_id';
 
-//log client id anywhere
-console.log('client_id: ', client_id);
-
 exports.handler = async (event, context) => {
     const eventLocation = event.queryStringParameters['venue.city'];
     const daysFromNow = event.queryStringParameters['datetime_local.lte'];
+    const perPage = event.queryStringParameters['per_page'];
 
     if (!eventLocation || !daysFromNow) {
         throw new Error(
@@ -17,6 +15,7 @@ exports.handler = async (event, context) => {
             // Show missing parameters in the error message
             + ' eventLocation: ' + eventLocation
             + ' daysFromNow: ' + daysFromNow
+            // + ` eventLocation: ${eventLocation}, daysFromNow: ${daysFromNow}`
         );
     }
 
@@ -28,7 +27,7 @@ exports.handler = async (event, context) => {
                     'venue.city': eventLocation,
                     'datetime_local.lte': daysFromNow,
                     client_id: client_id,
-                    per_page: 1000,
+                    'per_page': 1000,
                 },
             }
         );
